@@ -1,0 +1,849 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_Clinic_FullModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_Doctors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tell" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adrs" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeliCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ncode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Resume" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecID" Type="int" />
+          <Property Name="ServID" Type="int" />
+          <Property Name="img" Type="image" />
+        </EntityType>
+        <EntityType Name="Tbl_Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="NCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Img" Type="image" />
+        </EntityType>
+        <EntityType Name="Tbl_Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tell" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adrs" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeliCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="NCodePat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Services">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_VisitTime">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatID" Type="int" />
+          <Property Name="DocID" Type="int" />
+          <Property Name="SecID" Type="int" />
+          <Property Name="ServID" Type="int" />
+          <Property Name="Time_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="VTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Clinic_Full.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name_Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_Family_Pat" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="title_Serv" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Clinic_Full.dbo.vw_Visit_Time_Full' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Visit_Time_Full">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name_Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tell" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ncode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_Family_Pat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tell_Pat" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeliCode_Pat" Type="nvarchar" MaxLength="50" />
+          <Property Name="NCodePat" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="title_Serv" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Time_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="VTime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Tbl_Doctors_Tbl_Section">
+          <End Role="Tbl_Section" Type="Self.Tbl_Section" Multiplicity="0..1" />
+          <End Role="Tbl_Doctors" Type="Self.Tbl_Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Doctors">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Doctors_Tbl_Services">
+          <End Role="Tbl_Services" Type="Self.Tbl_Services" Multiplicity="0..1" />
+          <End Role="Tbl_Doctors" Type="Self.Tbl_Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Doctors">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Services_Tbl_Section">
+          <End Role="Tbl_Section" Type="Self.Tbl_Section" Multiplicity="0..1" />
+          <End Role="Tbl_Services" Type="Self.Tbl_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Services">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Services_Tbl_Section1">
+          <End Role="Tbl_Section" Type="Self.Tbl_Section" Multiplicity="0..1" />
+          <End Role="Tbl_Services" Type="Self.Tbl_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Services">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Doctors">
+          <End Role="Tbl_Doctors" Type="Self.Tbl_Doctors" Multiplicity="0..1" />
+          <End Role="Tbl_VisitTime" Type="Self.Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Doctors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="DocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Patient">
+          <End Role="Tbl_Patient" Type="Self.Tbl_Patient" Multiplicity="0..1" />
+          <End Role="Tbl_VisitTime" Type="Self.Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="PatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Section">
+          <End Role="Tbl_Section" Type="Self.Tbl_Section" Multiplicity="0..1" />
+          <End Role="Tbl_VisitTime" Type="Self.Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Services">
+          <End Role="Tbl_Services" Type="Self.Tbl_Services" Multiplicity="0..1" />
+          <End Role="Tbl_VisitTime" Type="Self.Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_CountDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CountPat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CountSec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CountServ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_DelDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelPat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelSec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelServ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DB_Clinic_FullModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Doctors" EntityType="Self.Tbl_Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Patient" EntityType="Self.Tbl_Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Section" EntityType="Self.Tbl_Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Services" EntityType="Self.Tbl_Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_VisitTime" EntityType="Self.Tbl_VisitTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[Name_Family] AS [Name_Family], 
+    [View_1].[Name_Family_Pat] AS [Name_Family_Pat], 
+    [View_1].[title] AS [title], 
+    [View_1].[title_Serv] AS [title_Serv], 
+    [View_1].[ID] AS [ID]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Visit_Time_Full" EntityType="Self.vw_Visit_Time_Full" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Visit_Time_Full].[Name_Family] AS [Name_Family], 
+    [vw_Visit_Time_Full].[Tell] AS [Tell], 
+    [vw_Visit_Time_Full].[Ncode] AS [Ncode], 
+    [vw_Visit_Time_Full].[Name_Family_Pat] AS [Name_Family_Pat], 
+    [vw_Visit_Time_Full].[Tell_Pat] AS [Tell_Pat], 
+    [vw_Visit_Time_Full].[MeliCode_Pat] AS [MeliCode_Pat], 
+    [vw_Visit_Time_Full].[NCodePat] AS [NCodePat], 
+    [vw_Visit_Time_Full].[LoginCode] AS [LoginCode], 
+    [vw_Visit_Time_Full].[LoginName] AS [LoginName], 
+    [vw_Visit_Time_Full].[title] AS [title], 
+    [vw_Visit_Time_Full].[title_Serv] AS [title_Serv], 
+    [vw_Visit_Time_Full].[ID] AS [ID], 
+    [vw_Visit_Time_Full].[Time_Date] AS [Time_Date], 
+    [vw_Visit_Time_Full].[VTime] AS [VTime]
+    FROM [dbo].[vw_Visit_Time_Full] AS [vw_Visit_Time_Full]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Tbl_Doctors_Tbl_Section" Association="Self.FK_Tbl_Doctors_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Doctors_Tbl_Services" Association="Self.FK_Tbl_Doctors_Tbl_Services">
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Services_Tbl_Section" Association="Self.FK_Tbl_Services_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Services_Tbl_Section1" Association="Self.FK_Tbl_Services_Tbl_Section1">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Doctors" Association="Self.FK_Tbl_VisitTime_Tbl_Doctors">
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Patient" Association="Self.FK_Tbl_VisitTime_Tbl_Patient">
+            <End Role="Tbl_Patient" EntitySet="Tbl_Patient" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Section" Association="Self.FK_Tbl_VisitTime_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Services" Association="Self.FK_Tbl_VisitTime_Tbl_Services">
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_Clinic_FullModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="DB_Clinic_FullEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" />
+          <EntitySet Name="sysdiagrams" EntityType="DB_Clinic_FullModel.sysdiagram" />
+          <EntitySet Name="Tbl_Doctors" EntityType="DB_Clinic_FullModel.Tbl_Doctors" />
+          <EntitySet Name="Tbl_Patient" EntityType="DB_Clinic_FullModel.Tbl_Patient" />
+          <EntitySet Name="Tbl_Section" EntityType="DB_Clinic_FullModel.Tbl_Section" />
+          <EntitySet Name="Tbl_Services" EntityType="DB_Clinic_FullModel.Tbl_Services" />
+          <EntitySet Name="Tbl_VisitTime" EntityType="DB_Clinic_FullModel.Tbl_VisitTime" />
+          <AssociationSet Name="FK_Tbl_Doctors_Tbl_Section" Association="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Doctors_Tbl_Services" Association="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Services">
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Doctors" Association="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Doctors">
+            <End Role="Tbl_Doctors" EntitySet="Tbl_Doctors" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Patient" Association="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Patient">
+            <End Role="Tbl_Patient" EntitySet="Tbl_Patient" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Services_Tbl_Section" Association="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Services_Tbl_Section1" Association="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section1">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Section" Association="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Section">
+            <End Role="Tbl_Section" EntitySet="Tbl_Section" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_VisitTime_Tbl_Services" Association="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Services">
+            <End Role="Tbl_Services" EntitySet="Tbl_Services" />
+            <End Role="Tbl_VisitTime" EntitySet="Tbl_VisitTime" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelDoc">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelPat">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelSec">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelServ">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DB_Clinic_FullModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DB_Clinic_FullModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="SP_CountDoc" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_CountPat" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_CountSec" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_CountServ" ReturnType="Collection(Int32)" />
+          <EntitySet Name="vw_Visit_Time_Full" EntityType="DB_Clinic_FullModel.vw_Visit_Time_Full" />
+          <EntitySet Name="View_1" EntityType="DB_Clinic_FullModel.View_1" />
+          <FunctionImport Name="SP_DelVisit">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Doctors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tell" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adrs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeliCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ncode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Resume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecID" Type="Int32" />
+          <Property Name="ServID" Type="Int32" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Tbl_Section" Relationship="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Section" FromRole="Tbl_Doctors" ToRole="Tbl_Section" />
+          <NavigationProperty Name="Tbl_Services" Relationship="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Services" FromRole="Tbl_Doctors" ToRole="Tbl_Services" />
+          <NavigationProperty Name="Tbl_VisitTime" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Doctors" FromRole="Tbl_Doctors" ToRole="Tbl_VisitTime" />
+        </EntityType>
+        <EntityType Name="Tbl_Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tell" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adrs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeliCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NCodePat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_VisitTime" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Patient" FromRole="Tbl_Patient" ToRole="Tbl_VisitTime" />
+        </EntityType>
+        <EntityType Name="Tbl_Section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Doctors" Relationship="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Section" FromRole="Tbl_Section" ToRole="Tbl_Doctors" />
+          <NavigationProperty Name="Tbl_Services" Relationship="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section" FromRole="Tbl_Section" ToRole="Tbl_Services" />
+          <NavigationProperty Name="Tbl_Services1" Relationship="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section1" FromRole="Tbl_Section" ToRole="Tbl_Services" />
+          <NavigationProperty Name="Tbl_VisitTime" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Section" FromRole="Tbl_Section" ToRole="Tbl_VisitTime" />
+        </EntityType>
+        <EntityType Name="Tbl_Services">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecID" Type="Int32" />
+          <NavigationProperty Name="Tbl_Doctors" Relationship="DB_Clinic_FullModel.FK_Tbl_Doctors_Tbl_Services" FromRole="Tbl_Services" ToRole="Tbl_Doctors" />
+          <NavigationProperty Name="Tbl_Section" Relationship="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section" FromRole="Tbl_Services" ToRole="Tbl_Section" />
+          <NavigationProperty Name="Tbl_Section1" Relationship="DB_Clinic_FullModel.FK_Tbl_Services_Tbl_Section1" FromRole="Tbl_Services" ToRole="Tbl_Section" />
+          <NavigationProperty Name="Tbl_VisitTime" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Services" FromRole="Tbl_Services" ToRole="Tbl_VisitTime" />
+        </EntityType>
+        <EntityType Name="Tbl_VisitTime">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatID" Type="Int32" />
+          <Property Name="DocID" Type="Int32" />
+          <Property Name="SecID" Type="Int32" />
+          <Property Name="ServID" Type="Int32" />
+          <Property Name="Time_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Doctors" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Doctors" FromRole="Tbl_VisitTime" ToRole="Tbl_Doctors" />
+          <NavigationProperty Name="Tbl_Patient" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Patient" FromRole="Tbl_VisitTime" ToRole="Tbl_Patient" />
+          <NavigationProperty Name="Tbl_Section" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Section" FromRole="Tbl_VisitTime" ToRole="Tbl_Section" />
+          <NavigationProperty Name="Tbl_Services" Relationship="DB_Clinic_FullModel.FK_Tbl_VisitTime_Tbl_Services" FromRole="Tbl_VisitTime" ToRole="Tbl_Services" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Tbl_Doctors_Tbl_Section">
+          <End Type="DB_Clinic_FullModel.Tbl_Section" Role="Tbl_Section" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_Doctors" Role="Tbl_Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Doctors">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Doctors_Tbl_Services">
+          <End Type="DB_Clinic_FullModel.Tbl_Services" Role="Tbl_Services" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_Doctors" Role="Tbl_Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Doctors">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Doctors">
+          <End Type="DB_Clinic_FullModel.Tbl_Doctors" Role="Tbl_Doctors" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_VisitTime" Role="Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Doctors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="DocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Patient">
+          <End Type="DB_Clinic_FullModel.Tbl_Patient" Role="Tbl_Patient" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_VisitTime" Role="Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="PatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Services_Tbl_Section">
+          <End Type="DB_Clinic_FullModel.Tbl_Section" Role="Tbl_Section" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_Services" Role="Tbl_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Services">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Services_Tbl_Section1">
+          <End Type="DB_Clinic_FullModel.Tbl_Section" Role="Tbl_Section" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_Services" Role="Tbl_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Services">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Section">
+          <End Type="DB_Clinic_FullModel.Tbl_Section" Role="Tbl_Section" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_VisitTime" Role="Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="SecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_VisitTime_Tbl_Services">
+          <End Type="DB_Clinic_FullModel.Tbl_Services" Role="Tbl_Services" Multiplicity="0..1" />
+          <End Type="DB_Clinic_FullModel.Tbl_VisitTime" Role="Tbl_VisitTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_VisitTime">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="vw_Visit_Time_Full">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name_Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tell" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ncode" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name_Family_Pat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tell_Pat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeliCode_Pat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NCodePat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title_Serv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Time_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name_Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Family_Pat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title_Serv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_Clinic_FullModelStoreContainer" CdmEntityContainer="DB_Clinic_FullEntities">
+          <EntitySetMapping Name="Tbl_Login">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_Login">
+              <MappingFragment StoreEntitySet="Tbl_Login">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="NCode" ColumnName="NCode" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Doctors">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_Doctors">
+              <MappingFragment StoreEntitySet="Tbl_Doctors">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="ServID" ColumnName="ServID" />
+                <ScalarProperty Name="SecID" ColumnName="SecID" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Ncode" ColumnName="Ncode" />
+                <ScalarProperty Name="MeliCode" ColumnName="MeliCode" />
+                <ScalarProperty Name="Adrs" ColumnName="Adrs" />
+                <ScalarProperty Name="Tell" ColumnName="Tell" />
+                <ScalarProperty Name="Name_Family" ColumnName="Name_Family" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Patient">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_Patient">
+              <MappingFragment StoreEntitySet="Tbl_Patient">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="NCodePat" ColumnName="NCodePat" />
+                <ScalarProperty Name="MeliCode" ColumnName="MeliCode" />
+                <ScalarProperty Name="Adrs" ColumnName="Adrs" />
+                <ScalarProperty Name="Tell" ColumnName="Tell" />
+                <ScalarProperty Name="Name_Family" ColumnName="Name_Family" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Section">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_Section">
+              <MappingFragment StoreEntitySet="Tbl_Section">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Services">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_Services">
+              <MappingFragment StoreEntitySet="Tbl_Services">
+                <ScalarProperty Name="SecID" ColumnName="SecID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_VisitTime">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.Tbl_VisitTime">
+              <MappingFragment StoreEntitySet="Tbl_VisitTime">
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="VTime" ColumnName="VTime" />
+                <ScalarProperty Name="Time_Date" ColumnName="Time_Date" />
+                <ScalarProperty Name="ServID" ColumnName="ServID" />
+                <ScalarProperty Name="SecID" ColumnName="SecID" />
+                <ScalarProperty Name="DocID" ColumnName="DocID" />
+                <ScalarProperty Name="PatID" ColumnName="PatID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_Clinic_FullModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_Clinic_FullModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="SP_DelDoc" FunctionName="DB_Clinic_FullModel.Store.SP_DelDoc" />
+          <FunctionImportMapping FunctionImportName="SP_DelPat" FunctionName="DB_Clinic_FullModel.Store.SP_DelPat" />
+          <FunctionImportMapping FunctionImportName="SP_DelSec" FunctionName="DB_Clinic_FullModel.Store.SP_DelSec" />
+          <FunctionImportMapping FunctionImportName="SP_DelServ" FunctionName="DB_Clinic_FullModel.Store.SP_DelServ" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_Clinic_FullModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_Clinic_FullModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Clinic_FullModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_Clinic_FullModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Clinic_FullModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_Clinic_FullModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_Clinic_FullModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="SP_CountDoc" FunctionName="DB_Clinic_FullModel.Store.SP_CountDoc" />
+          <FunctionImportMapping FunctionImportName="SP_CountPat" FunctionName="DB_Clinic_FullModel.Store.SP_CountPat" />
+          <FunctionImportMapping FunctionImportName="SP_CountSec" FunctionName="DB_Clinic_FullModel.Store.SP_CountSec" />
+          <FunctionImportMapping FunctionImportName="SP_CountServ" FunctionName="DB_Clinic_FullModel.Store.SP_CountServ" />
+          <EntitySetMapping Name="vw_Visit_Time_Full">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.vw_Visit_Time_Full">
+              <MappingFragment StoreEntitySet="vw_Visit_Time_Full">
+                <ScalarProperty Name="VTime" ColumnName="VTime" />
+                <ScalarProperty Name="Time_Date" ColumnName="Time_Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="title_Serv" ColumnName="title_Serv" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="NCodePat" ColumnName="NCodePat" />
+                <ScalarProperty Name="MeliCode_Pat" ColumnName="MeliCode_Pat" />
+                <ScalarProperty Name="Tell_Pat" ColumnName="Tell_Pat" />
+                <ScalarProperty Name="Name_Family_Pat" ColumnName="Name_Family_Pat" />
+                <ScalarProperty Name="Ncode" ColumnName="Ncode" />
+                <ScalarProperty Name="Tell" ColumnName="Tell" />
+                <ScalarProperty Name="Name_Family" ColumnName="Name_Family" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="DB_Clinic_FullModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="title_Serv" ColumnName="title_Serv" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Name_Family_Pat" ColumnName="Name_Family_Pat" />
+                <ScalarProperty Name="Name_Family" ColumnName="Name_Family" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_DelVisit" FunctionName="DB_Clinic_FullModel.Store.SP_DelVisit" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
